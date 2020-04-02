@@ -1,0 +1,170 @@
+<!DOCTYPE HTML>
+<html lang="ko">
+<head>
+	<title>Anoju.com</title>
+	<meta charset="utf-8">
+	<meta http-equiv="X-UA-Compatible" content="IE=edge">
+	<!--[if IE]><meta http-equiv="X-UA-Compatible" content="IE=edge"/><![endif]-->
+	<!-- <link rel="stylesheet" type="text/css" media="all" href="./resources/css/common.css"> -->
+	<style>
+		@font-face{
+		  font-family:'Nanum Barun Gothic';
+		  font-style:normal;
+		  font-weight:700;
+		  src:url(//cdn.jsdelivr.net/font-nanum/1.0/nanumbarungothic/v1/NanumBarunGothic-Bold.eot);
+		  src:url(//cdn.jsdelivr.net/font-nanum/1.0/nanumbarungothic/v1/NanumBarunGothic-Bold.eot?#iefix) format('embedded-opentype'),
+			   url(//cdn.jsdelivr.net/font-nanum/1.0/nanumbarungothic/v1/NanumBarunGothic-Bold.woff) format('woff'),
+			   url(//cdn.jsdelivr.net/font-nanum/1.0/nanumbarungothic/v1/NanumBarunGothic-Bold.ttf) format('truetype')
+		}
+		 
+		@font-face{
+		   font-family:'Nanum Barun Gothic';
+		   font-style:normal;
+		   font-weight:400;
+		   src:url(//cdn.jsdelivr.net/font-nanum/1.0/nanumbarungothic/v1/NanumBarunGothic-Regular.eot);
+		   src:url(//cdn.jsdelivr.net/font-nanum/1.0/nanumbarungothic/v1/NanumBarunGothic-Regular.eot?#iefix) format('embedded-opentype'),
+			   url(//cdn.jsdelivr.net/font-nanum/1.0/nanumbarungothic/v1/NanumBarunGothic-Regular.woff) format('woff'),
+			   url(//cdn.jsdelivr.net/font-nanum/1.0/nanumbarungothic/v1/NanumBarunGothic-Regular.ttf) format('truetype');
+		}
+		html{overflow-x:hidden;}
+		body {font-family:'NanumBarunGothic','NanumGothic','맑은고딕','Malgun Gothic','돋움',Dotum,'굴림',Gulim,Helvetica,sans-serif;font-size:12px;color:#333333;line-height:1.5;font-weight:normal;padding:0px;margin:0px;
+				overflow-x:hidden;background:#ededed url('./resources/images/intro/patturn.png') 0 0 repeat;}
+		img{border:0 none;}
+		.div {position:absolute;top:0px;left:0px;}
+		#copy {position:absolute;top:50%;left:50%;margin-left:-220px;margin-top:-230px;z-index:10;}
+		.ie8_wrap {position:relative;width:600px;margin:0 auto;margin-top:550px;margin-bottom:100px;display:none;}
+		.ie8_wrap div {text-align:center;margin-bottom:20px;}
+		.ie8_wrap div img {display:inline-block;}
+		#btn_ci {position:absolute;top:-300px;left:-300px;}
+		#btn_recruit {position:absolute;top:-150px;left:800px;}
+		#btn_group {position:absolute;top:-500px;left:700px;}
+
+		#btn_ci img {margin-bottom:20px;}
+		#btn_recruit img {margin-bottom:20px;}
+		#btn_group img {margin-bottom:20px;}
+		.dragBtn {position:absolute;top:0px;left:0px;}
+
+		#btn_ci .dragBtn {left:100px}
+		#btn_recruit .dragBtn {left:-50px}
+		#btn_group .dragBtn {left:-50px}
+
+		.txt {margin-top:-10px;}
+		.name {height:110px;}
+		.topImg {display:inline-block;margin:0 auto;padding-left:80px;margin-bottom:40px;}
+		#ie9Canvas {position:absolute;top:0px;left:0px;width:100%;height:100%;overflow:hidden;}
+		#intro_canvas_ie9  {position:absolute;left:50%;margin-left:-1500px;top:0px;}
+	</style>
+
+	<script>
+	var _version = 11;
+	var _mobile = false;
+	var _intro = false;
+	var lsBrowser = navigator.userAgent;
+	if( Number( lsBrowser.substr(29,3) ) < 11){
+		_version = Number( lsBrowser.substr(29,3) ) ;
+	}
+	if(_version < 8){
+		location.href ="main.html";
+	}try{
+//	console.log(navigator.userAgent);
+//	console.log(_version);
+//	console.log(_intro);
+	}catch(e){}
+	if (navigator.userAgent.indexOf("iPhone") >= 0){_mobile = true;}
+	if (navigator.userAgent.indexOf("iPad") >= 0){_mobile = true;}
+	if (navigator.userAgent.indexOf("Android") >= 0){_mobile = true;}
+
+	if(_mobile){
+		location.href ="main.html";
+	}
+	//location.href ="http://www.anoju.com/crazySwing60.html";
+	</script>
+	<!-- 해당 디자인 및 소스의 저작권은 스마일게이트에 있으면 현재 화면은 개인 연습 및 테스트 용으로 사용하고 있습니다 -->
+</head>
+<body>
+
+	<script type="text/javascript" src="./resources/js/jquery-1.10.2.min.js"></script>
+	<script src="./resources/js/utils.js"></script>
+	<script src="./resources/js/Triangle.js"></script>
+	<script src="./resources/js/TweenMax.min.js"></script>
+
+
+	<a href="javascript:;" id="btnsaa" style="position: absolute; top: 502px; left: 675px; z-index: 10000; display: none;">	<img src="./resources/images/btn.png"></a>
+	<div id="ie9Canvas">
+	<canvas id="intro_canvas_ie99" width="2000" height="1900" style="position:absolute;top:-500px;left:0%;"></canvas>
+	<canvas id="intro_canvas_ie9" width="3000" height="1900"></canvas>
+	</div>
+	<div class="ie8_wrap">
+		<canvas id="intro_canvas" width="550px" height="400px" style="display:none;"><img class="topImg" src="./resources/images/ie8_paticle01.png" alt=""></canvas>
+		<div class="name"><img src="./resources/images/ie8_intro_name.png" alt=""></div>
+		<div><img src="./resources/images/ie8_intro_copy.png" alt=""></div>
+		<div class="main_btn"><a href="#move"><img src="./resources/images/ie8_intro_skip_off.png" alt=""></a></div>
+		<div><span>본 웹사이트는 익스플로러 8이상, 크롬, 사파리, 파이어폭스 브라우저에 최적화 되어 있습니다.해당 디자인 및 소스의 저작권은 스마일게이트에 있으면 현재 화면은 개인 연습 및 테스트 용으로 사용하고 있습니다.</span></div>
+		<div id="btn_ci" idx="0">
+			<a href="javascript:;">
+				<div class="dragBtn"><img src="./resources/images/btn03.png" alt=""></div>
+				<img src="./resources/images/ci_ani1.gif" alt="">
+				<div class="txt"><img src="./resources/images/txt_wordpress.png" alt=""></div>
+			</a>
+		</div>
+		<div id="btn_group" idx="1">
+			<a href="javascript:;">
+				<div class="dragBtn"><img src="./resources/images/btn02.png" alt=""></div>
+				<img src="./resources/images/ci_ani2.gif" alt="">
+				<div class="txt"><img src="./resources/images/txt_gnuboard.png" alt=""></div>
+			</a>
+		</div>
+		<div id="btn_recruit" idx="2">
+			<a href="javascript:;">
+				<div class="dragBtn"><img src="./resources/images/btn01.png" alt=""></div>
+				<img src="./resources/images/ci_ani3.gif" alt="">
+				<div class="txt"><img src="./resources/images/txt_portfolio.png" alt=""></div>
+			</a>
+		</div>
+	</div>
+	<script>
+	$(document).ready(function (){
+		//_version = 9;
+		if(_version > 9){
+			$("<script/>").appendTo( $("body") ).attr({"src":"./resources/js/typedarray.js"});
+			$("<script/>").appendTo( $("body") ).attr({"src":"./resources/js/three.js"});
+	
+	
+			setTimeout(function (){
+				$("<script/>").appendTo( $("body") ).attr({"src":"./resources/js/TrackballControls.js"});
+			},500);
+	
+			setTimeout(function (){
+				$("<script/>").appendTo( $("body") ).attr({"src":"./resources/js/intro.js"});
+			},600);
+		}
+	
+		if(_version == 9){
+			//$("<script/>").appendTo( $("body") ).attr({"src":"./resources/js/tri/delaunay.js"});
+			//$("<script/>").appendTo( $("body") ).attr({"src":"./resources/js/tri/ball.js"});
+			setTimeout(function (){
+				$("<script/>").appendTo( $("body") ).attr({"src":"./resources/js/triangle.js"});
+			},10);
+			$(".ie8_wrap").show();
+			$("<script/>").appendTo( $("body") ).attr({"src":"./resources/js/intro9.1.js"});
+		}
+	
+		if(_version <= 8){
+			$(".ie8_wrap").show();
+			$("#btn_ci").find("a").attr({"href":"http://anoju.com/wp/"});
+			$("#btn_group").find("a").attr({"href":"http://anoju.com/gnuboard4/"});
+			$("#btn_recruit").find("a").attr({"href": "http://anoju.com/portfolio/"});
+		}
+	
+	});
+	</script>
+	<canvas id="canvas5" width="400" height="400" style="display:none;"></canvas>
+	<canvas id="canvas6" width="400" height="400" style="display:none;"></canvas>
+	<canvas id="canvas7" width="400" height="400" style="display:none;"></canvas>
+	<canvas id="canvas8" width="400" height="400" style="display:none;"></canvas>
+
+	<!-- <script src="./resources/js/utils(1).js"></script> -->
+	<script src="./resources/js/point3d.js"></script>
+	<script src="./resources/js/light.js"></script>
+</body>
+</html>
